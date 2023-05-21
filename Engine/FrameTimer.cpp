@@ -10,7 +10,7 @@ float FrameTimer::Mark() {
 	const auto old = last;
 	last = steady_clock::now();
 
-	const duration<float> frameTime = old - last;
+	const duration<float> frameTime = last - old;
 
 	return frameTime.count();
 }
