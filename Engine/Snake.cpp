@@ -50,12 +50,14 @@ bool Snake::IsInTileExceptEnd(const Location& target) const {
 	return false;
 }
 
-int Snake::getSpeed() const {
-	if (nSegments < 80) {
-		return 20 - nSegments / 4;
+float Snake::getMovePeriod() const {
+	if (nSegments < nSegmentToMaxSpeed) {
+		const float p = 1.0f - nSegments / nSegmentToMaxSpeed;
+
+		return snekMovePeriodMax * p + snekMovePeriodMin * (1.0f - p);
 	}
 	else {
-		return 0;
+		return snekMovePeriodMin;
 	}
 }
 

@@ -55,8 +55,8 @@ private:
 	Location blacklistLoc = delta_loc.Invert();
 	std::mt19937 rng;
 	Goal goal;
-	static constexpr int snekMovePeriod = 20;
-	int snekMoveCounter = 0;
 	bool gameIsOver = false;
 	bool isStarted = false;
+
+	float snekMoveCounter = 0.0f;
 };

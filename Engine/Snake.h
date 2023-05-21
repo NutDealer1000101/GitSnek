@@ -26,7 +26,7 @@ public:
 	void Draw(Board& brd) const;
 	bool IsInTile(const Location& target) const;
 	bool IsInTileExceptEnd(const Location& target) const;
-	int getSpeed() const;
+	float getMovePeriod() const;
 private:
 	static constexpr Color headColor = Colors::MakeRGB(255, 191, 0);	//Amber
 	static constexpr Color bodyColor1 = Colors::MakeRGB(124, 252, 0);
@@ -37,4 +37,7 @@ private:
 	Segment segments[nSegmentsMax];
 	int nSegments = 1;
 
+	static constexpr float snekMovePeriodMax = 0.3f;
+	static constexpr float snekMovePeriodMin = 0.05f;
+	static constexpr float nSegmentToMaxSpeed = 50;
 };

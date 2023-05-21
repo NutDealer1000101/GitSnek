@@ -51,6 +51,8 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	const float dt = ft.Mark();
+
 	if (!isStarted) {
 		if (wnd.kbd.KeyIsPressed(VK_RETURN)) isStarted = true;
 	}
@@ -76,9 +78,9 @@ void Game::UpdateModel()
 
 			goal.UpdateColor();
 
-			++snekMoveCounter;
-			if (snekMoveCounter >= snek.getSpeed()) {
-				snekMoveCounter = 0;
+			snekMoveCounter += dt;
+			if (snekMoveCounter >= snek.getMovePeriod()) {
+				snekMoveCounter = 0.0f;
 
 				blacklistLoc = delta_loc.Invert();
 
