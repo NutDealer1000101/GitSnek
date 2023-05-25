@@ -36,7 +36,8 @@ Game::Game(MainWindow& wnd)
 	brd(gfx),
 	rng(std::random_device()()),
 	snek({ 5,10 }),
-	goal(rng, brd, snek)
+	goal(rng, brd, snek),
+	sfx_gameOver(L"boowomp.wav")
 {
 	brd.CheckValidBoardLocation();
 }
@@ -87,6 +88,7 @@ void Game::UpdateModel()
 				const Location next = snek.GetNextHeadLocation(delta_loc);
 				if (!brd.IsInsideBoard(next) || snek.IsInTileExceptEnd(next)) {
 					gameIsOver = true;
+					sfx_gameOver.Play(1.0f, 0.3f);
 				}
 				else {
 					bool eating = next == goal.GetLocation();
@@ -95,7 +97,7 @@ void Game::UpdateModel()
 					}
 					snek.MoveBy(delta_loc);
 					if (eating) {
-						goal.Respawn(rng, brd, snek);
+						goal.Respawn(rng, brd, snek, true);
 					}
 				}
 			}

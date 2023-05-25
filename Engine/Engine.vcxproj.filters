@@ -135,4 +135,12 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="crunch1.wav">
+      <Filter>Media</Filter>
+    </Media>
+    <Media Include="boowomp.wav">
+      <Filter>Media</Filter>
+    </Media>
+  </ItemGroup>
 </Project>

@@ -59,4 +59,6 @@ private:
 	bool isStarted = false;
 
 	float snekMoveCounter = 0.0f;
+
+	Sound sfx_gameOver;
 };

@@ -1,10 +1,13 @@
 #include "Goal.h"
 
-Goal::Goal(std::mt19937& rng, const Board& brd, const Snake& snek) {
-	Respawn(rng, brd, snek);
+Goal::Goal(std::mt19937& rng, const Board& brd, const Snake& snek)
+	:
+	sfx_collect(L"crunch1.wav")
+{
+	Respawn(rng, brd, snek, false);
 }
 
-void Goal::Respawn(std::mt19937& rng, const Board& brd, const Snake& snek) {
+void Goal::Respawn(std::mt19937& rng, const Board& brd, const Snake& snek, bool sfx) {
 	std::uniform_int_distribution<int> xDist(0, brd.GetGridWidth() - 1);
 	std::uniform_int_distribution<int> yDist(0, brd.GetGridHeight() - 1);
 
@@ -15,6 +18,11 @@ void Goal::Respawn(std::mt19937& rng, const Board& brd, const Snake& snek) {
 	} while (snek.IsInTile(newLoc));
 
 	loc = newLoc;
+
+	if (sfx) {
+		std::uniform_real_distribution<float> pitch(0.7f, 1.3f);
+		sfx_collect.Play(pitch(rng), 0.4f);
+	}
 }
 
 void Goal::Draw(Board& brd) const {
